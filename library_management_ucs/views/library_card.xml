@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="library_card_list_view" model="ir.ui.view">
+            <field name="name">library.list.view</field>
+            <field name="model">library.card</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="code"/>
+                    <field name="book_limit"/>
+                    <field name="student"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="library_card_form_view" model="ir.ui.view">
+            <field name="name">library.form.view</field>
+            <field name="model">library.card</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="code"/>
+                        <field name="book_limit"/>
+                        <field name="student"/>
+                        <field name="card"/>
+                        <field name="user"/>
+                        <field name="active"/>
+                        <field name="startdate"/>
+                        <field name="enddate"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="library_card_search_view" model="ir.ui.view">
+            <field name="name">library.search.view</field>
+            <field name="model">library.card</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="code"/>
+                    <field name="code"/>
+                    <field name="user"/>
+                    <field name="book_limit"/>
+                </search>
+            </field>
+        </record>
+        <record id="library_card_kanban_view" model="ir.ui.view">
+            <field name="name">library.kanban.view</field>
+            <field name="model">library.card</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile" sample="1">
+
+                    <field name="book_limit"/>
+                    <field name="code"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <strong>
+                                            <field name="student"/>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <t  >
+                                    <hr class="mt8 mb8"/>
+                                    <field name="card"/>
+                                    <field name="user"/>
+                                </t>
+                                <div>
+                                    <field name="active"/>
+                                    <field name="startdate"/>
+                                    <field name="enddate"/>
+                                    <field name="user"/>
+                                    <field name="card"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="library_management_card" model="ir.actions.act_window">
+            <field name="name">Library Card</field>
+            <field name="res_model">library.card</field>
+            <field name="view_mode">list,form,search,kanban</field>
+        </record>
+
+        <menuitem id="library_management_card_menu"
+                  action="library_management_card"
+                  name="Library Card" />
+    </data>
+</odoo>

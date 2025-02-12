@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="zomato_management_form_view" model="ir.ui.view">
+        <field name="name">zomato.management.form</field>
+        <field name="model">zomato.management</field>
+        <field name="arch" type="xml">
+            <form string="zomato Management">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="delivery_person"/>
+                            <field name="partner_id"/>
+                            <field name="partner_ids" widget="many2many_tags"/>
+<!--                            <field name="order_id"/>-->
+                            <field name="employee_code"/>
+                            <field name="order"/>
+                            <field name="t_date"/>
+                        </group>
+                        <group>
+
+                            <div class="o_employee_avatar m-0 p-0">
+                                <field name="p_image" widget="image" class="oe_avatar m-0" options="{&quot;zoom&quot;: true, &quot;p_image&quot;:&quot;p_image&quot;}"/>
+                            </div>
+                        </group>
+                    </group>
+                    <notebook>
+                    <page string="address_area" name="address_area">
+<!--                        <field name="order_id"/>-->
+                    </page>
+
+                    <page string="review" name="review">
+<!--                        <field name="order_id"/>-->
+                    </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="zomato_management_list_view" model="ir.ui.view">
+        <field name="name">zomato.management.list</field>
+        <field name="model">zomato.management</field>
+        <field name="arch" type="xml">
+            <list string="Zomato Management">
+                <field name="delivery_person"/>
+                <field name="employee_code"/>
+                <field name="order"/>
+                <field name="t_date"/>
+                <field name="p_image"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_kanban_zomato_management" model="ir.ui.view">
+        <field name="name">zomato.management.Kanban</field>
+        <field name="model">zomato.management</field>
+        <field name="arch" type="xml">
+            <kanban string="Tasks">
+                <field name="delivery_person"/>
+                <field name="employee_code"/>
+                <field name="order"/>
+                <field name="t_date"/>
+                <field name="p_image"/>
+                <field name="show_hr_icon_display"/>
+                <field name="image_128"/>
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <aside class="o_kanban_aside_full">
+                            <t t-if="record.p_image.raw_value">
+                                <field name="p_image" widget="background_image" options="{'zoom': true, 'zoom_delay': 1000, 'preview_image':'p_image'}" class="d-block position-relative"/>
+                            </t>
+<!--                            <div t-else="" class="d-flex align-items-center justify-content-center bg-100 bg-gradient">-->
+<!--                                <svg xmlns="http://www.w3.org/2000/svg" class="w-75 h-75 opacity-50" viewBox="0 0 20 20">-->
+<!--                                    <g fill="currentColor">-->
+<!--                                        <path d="M 10 11 C 4.08 11 2 14 2 16 L 2 19 L 18 19 L 18 16 C 18 14 15.92 11 10 11 Z"/>-->
+<!--                                        <circle cx="10" cy="5.5" r="4.5"/>-->
+<!--                                    </g>-->
+<!--                                </svg>-->
+<!--                            </div>-->
+                        </aside>
+                        <main class="ms-2">
+<!--                            <div>-->
+<!--                                <field class="fw-bold fs-5" name="delivery_person" placeholder="person's Name"/>-->
+<!--                                <div t-if="record.show_hr_icon_display.raw_value" class="float-end">-->
+<!--                                    <field name="hr_icon_display" class="o_delivery_boy_availability" widget="boy_presence_status"/>-->
+<!--                                </div>-->
+<!--                            </div>-->
+                            <field class="fw-bold fs-5" type="open" name="t_date"/>
+                            <p>having code <field name="employee_code" /> has deliver <field name="order"/> on date<field name="t_date"/></p>
+                            <footer>
+                                <center>
+                                <div class="d-flex ms-auto">
+                                    <field name="employee_code"/>
+                                    <field name="order"/>
+                                </div></center>
+                            </footer>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="zomato_management_action" model="ir.actions.act_window">
+        <field name="name">zomato management</field>
+        <field name="res_model">zomato.management</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+    <menuitem id="zomato_management_menu"
+              name="zomato management"
+              sequence="100"
+              action="zomato_management_action"/>
+</odoo>

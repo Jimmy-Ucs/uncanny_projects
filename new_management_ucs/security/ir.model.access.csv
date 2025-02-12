@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_school_management,access.school.management,model_school_management,,1,1,1,1
+access_academic_year,access.academic.year,model_academic_year,,1,1,1,1
+access_academic_month,access.academic.month,model_academic_month,,1,1,1,1
+access_standard,access.standard,model_standard,,1,1,1,1

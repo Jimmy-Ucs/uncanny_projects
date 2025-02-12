@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record id="library_author_list_view" model="ir.ui.view">
+            <field name="name">library.list.view</field>
+            <field name="model">library.author</field>
+            <field name="arch" type="xml">
+                <list>
+                    <field name="name"/>
+                    <field name="birthdate"/>
+                    <field name="deathdate" />
+                    <field name="biography"/>
+
+                    <!--                    <field name=""/>-->
+                    <!--                    <field name=""/>-->
+                    <!--                    <field name=""/>-->
+
+                </list>
+            </field>
+        </record>
+
+        <record id="library_author_form_view" model="ir.ui.view">
+            <field name="name">library.form.view</field>
+            <field name="model">library.author</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="birthdate"/>
+                        <field name="deathdate" />
+                        <field name="biography"/>
+                        <field name="note"/>
+                        <field name="code"/>
+                        <field name="author"/>
+                        <field name="active"/>
+                        <field name="editor"/>
+
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record id="library_author_search_view" model="ir.ui.view">
+            <field name="name">library.search.view</field>
+            <field name="model">library.author</field>
+            <field name="arch" type="xml">
+                <search>
+                    <field name="name"/>
+                    <field name="author"/>
+                    <field name="birthdate"/>
+
+                </search>
+            </field>
+        </record>
+        <record id="library_author_kanban_view" model="ir.ui.view">
+            <field name="name">library.kanban.view</field>
+            <field name="model">library.author</field>
+            <field name="arch" type="xml">
+                <kanban class="o_kanban_mobile" sample="1">
+                    <field name="name"/>
+                    <field name="birthdate"/>
+                    <field name="note"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <strong>
+                                            <field name="code"/>
+                                        </strong>
+                                    </div>
+                                </div>
+                                <t >
+                                    <hr class="mt8 mb8"/>
+                                    <field name="note"/>
+                                </t>
+                                <div>
+                                    <field name="editor"/>
+                                    <field name="biography"/>
+                                    <field name="note"/>
+                                    <field name="editor"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="library_management_author" model="ir.actions.act_window">
+            <field name="name">Library Author</field>
+            <field name="res_model">library.author</field>
+            <field name="view_mode">list,form,kanban,search</field>
+        </record>
+
+        <menuitem id="library_management_author_menu"
+                  action="library_management_author"
+                  name="Library Author" />
+    </data>
+</odoo>

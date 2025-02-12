@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="standard_form_view" model="ir.ui.view">
+        <field name="name">standard.form</field>
+        <field name="model">standard</field>
+        <field name="arch" type="xml">
+            <form string="standard">
+                <header>
+                    <button string ="Import student data"
+                            name="action_import_student_data"
+                            type="object"
+                            class="oe_highlight"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="code"/>
+                        <field name="name"/>
+                        <field name="desc"/>
+                    </group><group>
+                    <notebook string="Result">
+
+                        <page string="subjects" name="subject_name">
+                            <field name="subject" string="name"/>
+                        </page>
+                        <page string="remarks" name="remarks of subject">
+                            <field name="remarks"/>
+                        </page>
+                    </notebook></group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!--    <record id="action_import_student_data_view" model="ir.ui.view">-->
+    <!--        <field name="name">standard.form.view</field>-->
+    <!--        <field name="model">standard</field>-->
+    <!--        <field name="inherit_id" ref="school_management_ucs.standard_form_view"/>-->
+    <!--        <field name="arch" type="xml">-->
+    <!--            <form>-->
+    <!--                <sheet>-->
+    <!--                    <field name=""-->
+    <!--                </sheet>-->
+    <!--            </form>-->
+    <!--            <button string ="Import student data"-->
+    <!--                    name="%(standard.action_import_student_data)d "-->
+    <!--                    type="object"-->
+    <!--                    class="oe_highlight"/>-->
+    <!--        </field>-->
+    <!--    </record>-->
+
+
+    <record id="standard_list_view" model="ir.ui.view">
+        <field name="name">standard.list</field>
+        <field name="model">standard</field>
+        <field name="arch" type="xml">
+            <list string="standard">
+                <header>
+                    <button string ="Import student data"
+                            name="action_import_student_data"
+                            type="object"
+                            class="oe_highlight"/>
+                </header>
+                <field name="name"/>
+                <field name="code"/>
+                <field name="desc"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_kanban_standard" model="ir.ui.view">
+        <field name="name">standard.Kanban</field>
+        <field name="model">standard</field>
+        <field name="arch" type="xml">
+            <kanban string="details">
+                <field name="name"/>
+                <field name="desc"/>
+                <field name="code"/>
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <aside>
+                            <!--                            <field name="name"/>-->
+                        </aside>
+
+                        <main class="ms-2">
+                            <field name="name"/>
+                            <field name="code"/>
+                            <field name="desc"/>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+    <record id="standard_action" model="ir.actions.act_window">
+        <field name="name">standard</field>
+        <field name="res_model">standard</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+    <menuitem id="standard_menu"
+              name="standard"
+              sequence="100"
+              action="standard_action"/>
+</odoo>

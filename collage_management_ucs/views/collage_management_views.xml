@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="collage_management_form_view" model="ir.ui.view">
+        <field name="name">collage.management.form</field>
+        <field name="model">collage.management</field>
+        <field name="arch" type="xml">
+            <form string="customer Management">
+                <sheet>
+                    <header>
+                        <button name="action_confirm" string="wizard" type="object"/>
+                        <button name="collage_management_ucs.action_open_my_wizard" string="wizard_action" type="action"/>
+                    </header>
+                    <group>
+                        <group>
+
+                            <field name="name"/>
+                            <field name="contact"/>
+                            <field name="student_id"/>
+                            <field name="description"/>
+<!--                            <field name="partner_id"/>-->
+                        </group>
+                        <group>
+                            <field name="address"/>
+                            <div class="o_employee_avatar m-0 p-0">
+                                <field name="p_image" widget="image" class="oe_avatar m-0" options="{&quot;zoom&quot;: true, &quot;p_image&quot;:&quot;p_image&quot;}"/>
+                            </div>
+                        </group>
+                    </group>
+                    <notebook>
+                    <page string="address_area" name="address_area">
+<!--                        <field name="partner_id"/>-->
+                    </page>
+
+                    <page string="review" name="review">
+<!--                        <field name="partner_id"/>-->
+                    </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="customer_management_list_view" model="ir.ui.view">
+        <field name="name">collage.management.list</field>
+        <field name="model">collage.management</field>
+        <field name="arch" type="xml">
+            <list string="customer Management">
+                <header>
+                    <button name="collage_management_ucs.action_open_my_wizard" string="wizard_action" type="action"/>
+                </header>
+                <field name="name"/>
+                <field name="contact"/>
+                <field name="address"/>
+            </list>
+        </field>
+    </record>
+
+
+
+    <record id="view_kanban_customer_management" model="ir.ui.view">
+        <field name="name">collage.management.Kanban</field>
+        <field name="model">collage.management</field>
+        <field name="arch" type="xml">
+            <kanban string="Tasks">
+                <field name="name"/>
+                <field name="p_image"/>
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <aside class="o_kanban_aside_full">
+                            <t t-if="record.p_image.raw_value">
+                                <field name="p_image" widget="background_image" options="{'zoom': true, 'zoom_delay': 1000, 'preview_image':'p_image'}" class="d-block position-relative"/>
+                            </t>
+                        </aside>
+                        <main class="ms-2">
+                            <footer>
+                                <center>
+                                <div class="d-flex ms-auto">
+                                    <field name="contact"/>
+                                </div></center>
+                            </footer>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="res_partner_form_view" model="ir.ui.view">
+        <field name="name">res.partner.form.view</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form" />
+        <field name="arch" type="xml">
+            <field name="phone" position="after">
+                <group><field name="customer_id"/></group>
+            </field>
+        </field>
+    </record>
+
+
+
+    <record id="collage_management_action" model="ir.actions.act_window">
+        <field name="name">collage management</field>
+        <field name="res_model">collage.management</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+    <menuitem id="collage_management_menu"
+              name="collage management"
+              sequence="100"
+              action="collage_management_action"/>
+</odoo>

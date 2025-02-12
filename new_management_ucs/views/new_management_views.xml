@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="school_management_form_view" model="ir.ui.view">
+        <field name="name">school.management.form</field>
+        <field name="model">school.management</field>
+        <field name="arch" type="xml">
+            <form string="school Management">
+                <sheet>
+                     <header>
+                        <button name="action_draft" string="Draft" type="object"/>
+                        <button name="action_done" string="Done" type="object"/>
+                        <button name="action_terminate" string="Terminate" type="object"/>
+                        <button name="action_cancel" string="Cancel" type="object"/>
+                        <field name="state_s" widget="statusbar" statusbar_visible="draft,done,terminate,cancel"/>
+                    </header>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="l_date"/>
+                            <field name="mobile" widget="mobile"/>
+                            <field name="contact"/>
+                            <field name="zip"/>
+                            <field name="state"/>
+                            <field name="country"/>
+                            <field name="birth_date"/>
+                            <field name="s_code"  readonly="True"/>
+
+                        </group><group>
+                        <div class="o_employee_avatar m-0 p-0">
+                                <field name="p_image" widget="image" class="oe_avatar m-0" options="{&quot;zoom&quot;: true, &quot;p_image&quot;:&quot;p_image&quot;}"/>
+                        </div></group>
+                        <group>
+                            <field name="gender"/>
+                            <field name="age"/>
+                            <field name="height"/>
+                            <field name="weight"/>
+                        </group>
+                    </group>
+                    <notebook string="Result">
+                    <page string="subjects" name="subject_name">
+                        <field name="subject"/>
+                    </page>
+                    <page string="remarks" name="remarks of subject">
+                        <field name="remarks"/>
+                    </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<record id="school_management_list_view" model="ir.ui.view">
+        <field name="name">school.management.list</field>
+        <field name="model">school.management</field>
+        <field name="arch" type="xml">
+            <list string="school Management">
+                <field name="mobile"/>
+                <field name="age"/>
+                <field name="date"/>
+                <field name="state"/>
+                <field name="country"/>
+                <field name="s_code"/>
+            </list>
+        </field>
+    </record>
+
+<record id="view_kanban_school_management" model="ir.ui.view">
+        <field name="name">school.management.Kanban</field>
+        <field name="model">school.management</field>
+        <field name="arch" type="xml">
+            <kanban string="details">
+                <field name="mobile"/>
+                <field name="gender"/>
+                <field name="zip"/>
+                <field name="date"/>
+                <field name="l_date"/>
+                <field name="state"/>
+                <field name="country"/>
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <aside class="o_kanban_aside_full">
+                            <t t-if="record.p_image.raw_value">
+                                <field name="p_image" widget="background_image" options="{'zoom': true, 'zoom_delay': 1000, 'preview_image':'p_image'}" class="d-block position-relative"/>
+                            </t>
+                        </aside>
+
+                        <main class="ms-2">
+                            <div><field name="mobile"/></div>
+                             <div><field name="gender"/></div>
+                            <div><field name="date"/></div>
+                             <field name="l_date"/>
+                             <field name="zip"/>
+                             <field name="state"/>
+
+                        <footer>
+                                <center>
+                                <div class="d-flex ms-auto">
+                                    <field name="country"/>
+                                </div></center>
+                        </footer>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+<record id="school_management_search_view" model="ir.ui.view">
+        <field name="name">school.management search view</field>
+        <field name="model">school.management</field>
+        <field name="arch" type="xml">
+            <search string="User-defined Defaults">
+                <field name="l_date"/>
+                <field name="state_s"/>
+                <field name="date"/>
+            </search>
+        </field>
+    </record>
+
+<record id="student_code" model="ir.sequence">
+    <field name="name">student code</field>
+    <field name="code">school.management</field>
+    <field name="prefix">21C0</field>
+    <field name="number_increment" eval="1"/>
+</record>
+
+<record id="school_management_action" model="ir.actions.act_window">
+        <field name="name">school management</field>
+        <field name="res_model">school.management</field>
+        <field name="view_mode">search,kanban,form,list</field>
+    </record>
+
+    <menuitem id="school_management_menu_root"
+              name="school management"
+              sequence="100"
+              action="school_management_action"/>
+
+    <menuitem id="academic_month_menu"
+              name="academic month"
+              sequence="101"
+              parent="school_management_menu_root"
+              action="school_management_action"/>
+
+    <menuitem id="academic_month_menu1"
+              name="academic year"
+              sequence="102"
+              parent="academic_month_menu"
+              action="school_management_action"/>
+
+</odoo>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+
+
+    <record id="my_wizard_form_view" model="ir.ui.view">
+        <field name="name">my.wizard.form</field>
+        <field name="model">my.wizard</field>
+        <field name="arch" type="xml">
+            <form string="My Wizard">
+                <sheet>
+                    <group>
+                      <field name="name"/>
+                      <field name="description"/>
+
+                    </group>
+                    <footer>
+                        <button string="Close" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="action_open_my_wizard" model="ir.actions.act_window">
+        <field name="name">Open My Wizard</field>
+        <field name="res_model">my.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+        <field name="view_id" ref="wizard_management_ucs.my_wizard_form_view"/>
+    </record>
+
+</odoo>

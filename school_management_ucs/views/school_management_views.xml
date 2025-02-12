@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="school_management_form_view" model="ir.ui.view">
+        <field name="name">school.management.form</field>
+        <field name="model">school.management</field>
+        <field name="arch" type="xml">
+            <form string="school Management">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="date"/>
+                            <field name="l_date"/>
+                            <field name="mobile" widget="mobile"/>
+                            <field name="contact"/>
+                            <field name="zip"/>
+                            <field name="state"/>
+                            <field name="country"/>
+
+                        </group><group>
+                        <div class="o_employee_avatar m-0 p-0">
+                                <field name="p_image" widget="image" class="oe_avatar m-0" options="{&quot;zoom&quot;: true, &quot;p_image&quot;:&quot;p_image&quot;}"/>
+                        </div></group>
+                        <group>
+                            <field name="gender"/>
+                            <field name="age"/>
+                            <field name="height"/>
+                            <field name="weight"/>
+                        </group>
+                    </group>
+                    <notebook string="Result">
+                    <page string="subjects" name="subject_name">
+                        <field name="subject"/>
+                    </page>
+                    <page string="remarks" name="remarks of subject">
+                        <field name="remarks"/>
+                    </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<record id="school_management_list_view" model="ir.ui.view">
+        <field name="name">school.management.list</field>
+        <field name="model">school.management</field>
+        <field name="arch" type="xml">
+            <list string="school Management">
+                <field name="mobile"/>
+                <field name="age"/>
+                <field name="date"/>
+                <field name="state"/>
+                <field name="country"/>
+            </list>
+        </field>
+    </record>
+
+<record id="view_kanban_school_management" model="ir.ui.view">
+        <field name="name">school.management.Kanban</field>
+        <field name="model">school.management</field>
+        <field name="arch" type="xml">
+            <kanban string="details">
+                <field name="mobile"/>
+                <field name="gender"/>
+                <field name="zip"/>
+                <field name="date"/>
+                <field name="l_date"/>
+                <field name="state"/>
+                <field name="country"/>
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <aside>
+                               <t t-if="record.p_image.raw_value">
+                                <field name="p_image" widget="background_image" options="{'zoom': true, 'zoom_delay': 1000, 'preview_image':'p_image'}" class="d-block position-relative"/>
+                            </t>
+                        </aside>
+
+                        <main class="ms-2">
+                            <div><field name="mobile"/></div>
+                             <div><field name="gender"/></div>
+                            <div><field name="date"/></div>
+                             <field name="l_date"/>
+                             <field name="zip"/>
+                             <field name="state"/>
+                        <footer>
+                                <center>
+                                <div class="d-flex ms-auto">
+                                    <field name="country"/>
+                                </div></center>
+                        </footer>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+<record id="school_management_search_view" model="ir.ui.view">
+        <field name="name">school.management search view</field>
+        <field name="model">school.management</field>
+        <field name="arch" type="xml">
+            <search string="User-defined Defaults">
+                <field name="l_date"/>
+                <field name="state"/>
+                <field name="date"/>
+<!--                <group expand="0" string="Group By">-->
+<!--                    <filter string="User" name="groupby_user" domain="[]" context="{'group_by':'user_id'}"/>-->
+<!--                    <filter string="Company" name="groupby_company" domain="[]" context="{'group_by':'company_id'}"/>-->
+<!--                </group>-->
+            </search>
+        </field>
+    </record>
+
+    <record id="sale_management_form_view" model="ir.ui.view">
+        <field name="name">sale.order.form.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form" />
+        <field name="arch" type="xml">
+
+            <xpath expr="//notebook/page/field[@name='order_line']/list/field[@name='tax_id']" position="after">
+                <field name="invoice_id"/>
+            </xpath>
+<!--            <field name="x_custom_field"/>-->
+<!--        <field name="date_order" position="before">-->
+<!--                <field name="partner_id" position="move"/>-->
+<!--            </field>-->
+            <xpath expr="//field[@name='date_order']" position="after">
+                    <field name="partner_id" postion="move"/>
+            </xpath>
+<!--                <field name="invoice_id"/>-->
+<!--                <xpath expr="//field[@name='date_order']" position="before">-->
+<!--                <field name="invoice_id"/>-->
+<!--                </xpath>-->
+<!--            <xpath expr="//field[@name='validity_date']" position="attributes">-->
+<!--                <attribute name="invisible">1</attribute>-->
+<!--            </xpath>-->
+<!--            <field name="validity_date" position="after">-->
+<!--                <field name="invoice_id"/>-->
+<!--            </field>-->
+        </field>
+    </record>
+
+    <record id="sale_management_kanban_view" model="ir.ui.view">
+        <field name="name">sale.order.kanban.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_kanban_with_onboarding" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='date_order']" position="before">
+                <field name="invoice_id"/>
+            </xpath>
+            </field>
+    </record>
+
+           <record id="sale_management_list_view" model="ir.ui.view">
+        <field name="name">sale.order.list.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding" />
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="invoice_id"/>
+            </xpath>
+            </field>
+           </record>
+
+      <record id="sale_management_search_view" model="ir.ui.view">
+        <field name="name">sale.order.search.view</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.sale_order_view_search_inherit_quotation" />
+        <field name="arch" type="xml">
+        <xpath expr="//search/field[@name='campaign_id']" position="after">
+                <field name="invoice_id" string="invoice"/>
+                <filter string="invoice" name="invoice_id" domain="[('state','in', ('draft', 'sent'))]"/>
+
+        </xpath>
+            </field>
+           </record>
+
+
+
+
+<record id="school_management_action" model="ir.actions.act_window">
+        <field name="name">school management</field>
+        <field name="res_model">school.management</field>
+        <field name="view_mode">search,kanban,form,list</field>
+    </record>
+
+    <menuitem id="school_management_menu_root"
+              name="school management"
+              sequence="100"
+              action="school_management_action"/>
+
+    <menuitem id="academic_month_menu"
+              name="academic month"
+              sequence="101"
+              parent="school_management_menu_root"
+              action="school_management_action"/>
+
+    <menuitem id="academic_month_menu1"
+              name="academic year"
+              sequence="102"
+              parent="academic_month_menu"
+              action="school_management_action"/>
+
+</odoo>

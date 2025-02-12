@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+
+<!--        &lt;!&ndash; The wizard view &ndash;&gt;-->
+<!--        <record id="view_my_wizard_form" model="ir.ui.view">-->
+<!--            <field name="name">my.wizard.form</field>-->
+<!--            <field name="model">my.wizard</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form string="My Wizard">-->
+<!--                    <group>-->
+<!--                        <field name="student_id"/>-->
+<!--                        <field name="contact"/>-->
+<!--                    </group>-->
+<!--                    <footer>-->
+<!--                        <button string="Cancel" class="oe_link" special="cancel"/>-->
+<!--                        <button string="Confirm" type="object" name="confirm" class="oe_highlight"/>-->
+<!--                    </footer>-->
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+    <record id="view_my_wizard_form" model="ir.ui.view">
+        <field name="name">my.wizard.form</field>
+        <field name="model">my.wizard</field>
+        <field name="arch" type="xml">
+            <form string="My Wizard">
+                <group>
+                    <field name="student_id"/>
+                    <field name="description"/>
+                </group>
+                <footer>
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                    <button string="Save" type="object" name="default_get" class="btn-primary"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+
+
+
+    <record id="action_open_my_wizard" model="ir.actions.act_window">
+    <field name="name">Open My Wizard</field>
+    <field name="res_model">my.wizard</field>
+    <field name="view_mode">list</field>
+    <field name="target">new</field>
+</record>
+
+
+
+
+<!--    <record id="action_open_my_wizard_window" model="ir.actions.act_window">-->
+<!--    <field name="name">My Wizard</field>-->
+<!--    <field name="res_model">my.wizard</field>-->
+<!--    <field name="view_mode">form</field>-->
+<!--    <field name="view_id" ref="collage_management_ucs.view_my_wizard_form"/>-->
+<!--    <field name="target">new</field>-->
+<!--    <field name="binding_model_id" ref="model_collage_management"/>-->
+<!--        <field name="binding_view_types">form</field>-->
+<!--</record>-->
+</data>
+</odoo>

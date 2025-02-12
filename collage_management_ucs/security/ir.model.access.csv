@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_collage_management,access.collage.management,model_collage_management,,1,1,1,1
+access_my_wizard,access.my.wizard,model_my_wizard,,1,1,1,1

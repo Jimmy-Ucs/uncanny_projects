@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="wizard_demo_view" model="ir.ui.view">
+        <field name="name">my.model.form</field>
+        <field name="model">my.model</field>
+        <field name="arch" type="xml">
+            <form string="my model">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="my_model_list_view" model="ir.ui.view">
+        <field name="name">my.model.list</field>
+        <field name="model">my.model</field>
+        <field name="arch" type="xml">
+            <list string="wizard management Management">
+                <header>
+                    <button name="%(wizard_management_ucs.action_open_my_wizard)d" string="wizard_action" type="action"/>
+                </header>
+                <field name="name"/>
+                <field name="description"/>
+            </list>
+        </field>
+    </record>
+
+
+<record id="wizard_demo_action" model="ir.actions.act_window">
+<field name="name">wizard Demo</field>
+<field name="res_model">my.model</field>
+<field name="view_mode">list</field>
+</record>
+
+    <menuitem id="wizard_management_menu"
+              name="wizard management"
+              sequence="100"
+              action="wizard_demo_action"/>
+</odoo>

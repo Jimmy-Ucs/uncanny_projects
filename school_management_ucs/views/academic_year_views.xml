@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="academic_year_form_view" model="ir.ui.view">
+        <field name="name">academic.year.form</field>
+        <field name="model">academic.year</field>
+        <field name="arch" type="xml">
+            <form string="academic year">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="month_ids"/>
+                        </group>
+                        <group>
+                            <field name="s_date"/>
+                            <field name="st_date"/>
+                            <field name="c_year"/>
+                        </group>
+                    </group>
+                    <notebook string="Result">
+                    <page string="subjects" name="subject_name">
+                        <field name="subject"/>
+                    </page>
+                    <page string="remarks" name="remarks of subject">
+                        <field name="remarks"/>
+                    </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+<record id="academic_year_list_view" model="ir.ui.view">
+        <field name="name">academic.year.list</field>
+        <field name="model">academic.year</field>
+        <field name="arch" type="xml">
+            <list string="Academic year">
+                <field name="name"/>
+                <field name="s_date"/>
+                <field name="st_date"/>
+                <field name="c_year"/>
+            </list>
+        </field>
+    </record>
+
+<record id="view_kanban_academic_year" model="ir.ui.view">
+        <field name="name">academic.year.Kanban</field>
+        <field name="model">academic.year</field>
+        <field name="arch" type="xml">
+            <kanban string="details">
+                <field name="name"/>
+                <field name="description"/>
+                <field name="s_date"/>
+                <field name="st_date"/>
+                <field name="c_year"/>
+                <templates>
+                    <t t-name="card" class="flex-row">
+                        <aside>
+<!--                            <field name="name"/>-->
+                        </aside>
+
+                        <main class="ms-2">
+                            <field name="name"/>
+                            <field name="s_date"/>
+                            <field name="st_date"/>
+                            <field name="description"/>
+                        <footer>
+                                <center>
+                                <div class="d-flex ms-auto">
+                                    <field name="c_year"/>
+                                </div></center>
+                        </footer>
+                        </main>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+
+<record id="academic_year_action" model="ir.actions.act_window">
+        <field name="name">academic year</field>
+        <field name="res_model">academic.year</field>
+        <field name="view_mode">kanban,list,form</field>
+    </record>
+
+    <menuitem id="academic_year_menu"
+              name="academic_year"
+              sequence="100"
+              action="academic_year_action"/>
+</odoo>
